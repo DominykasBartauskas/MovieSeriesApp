@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Movielistr</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar_custom">
+
+    <div class="container-fluid">
+
+        <a href="/"><img src="/static/images/popcorn_logo.png" height="30" loading="lazy"
+                         style="padding: 0 10px 0 50px;" alt="logo"></a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+{#            <li class="nav-item">#}
+{#                <a class="nav-link text-light" href="/new">Releases</a>#}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link text-light" href="/trending">Trending</a>#}
+{#            </li>#}
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/watchlist">Watchlist</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav flex-row" style="padding-right: 50px;">
+            <form action="{{ url_for('search') }}" method="POST">
+                <div class="input-group">
+                    <div class="form-outline">
+                        <input type="text" name="search_name" class="form-control custom_search_border text-light"
+                               autocomplete="off"/>
+                        <label class="form-label text-light" for="default">Search...</label>
+                    </div>
+                    <button type="submit" value="Search" class="btn custom_search"><i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('body').on('click', '.btn_add', function (e) {
+            e.preventDefault();
+            var content_id = $(this).data('content-id');
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '/watchlist_entry',
+                data: JSON.stringify({content_id: content_id}),
+                contentType: 'application/json;charset=UTF-8',
+                success: function (response) {
+                    console.log('Content added to watchlist!');
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error adding content to watchlist:', error);
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>

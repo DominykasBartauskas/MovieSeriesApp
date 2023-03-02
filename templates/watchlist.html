@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="flex-container">
+        {% for content in data %}
+            {% if content.titleType == "movie" %}
+                <div class="card">
+                    <div class="poster">
+                        <div class="titleType">
+                            <span class="material-symbols-outlined">movie</span>
+                        </div>
+                        <img src="{{ content.image }}" alt="Movie Poster">
+                    </div>
+                    <div class="movie_details details">
+                        <h2>{{ content.title }}</h2>
+                        <div class="released rmovie">
+                            Released: <span>{{ content.year }}</span><br/>
+                            Runtime: <span>{{ content.runningTimeInMinutes }}</span>
+                        </div>
+                        <div class="add_list">
+                            <div class="button1">
+                                <form action="{{ url_for('delete_entry') }}" method="POST">
+                                    <button class="delete_btn" type="submit" name="content_id" value="{{ content.id }}">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="button2">
+                                <form action="{{ url_for('details') }}" method="POST">
+                                    <button type="submit" name="content_id" value="{{ content.id }}">
+                                        Details
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card">
+                    <div class="poster">
+                        <div class="titleType">
+                            <span class="material-symbols-outlined">Tv</span>
+                        </div>
+                        <img src="{{ content.image }}" alt="Movie Poster">
+                    </div>
+                    <div class="series_details details">
+                        <h2>{{ content.title }}</h2>
+                        <div class="released rseries">
+                            Started: <span>{{ content.seriesStartYear }}</span><br/>
+                            Finished: <span>{{ content.seriesEndYear }}</span><br/>
+                            Episodes: <span>{{ content.numberOfEpisodes }}</span>
+                        </div>
+                        <div class="add_list">
+                            <div class="button1">
+                                <form action="{{ url_for('delete_entry') }}" method="POST">
+                                    <button class="delete_btn" type="submit" name="content_id" value="{{ content.id }}">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="button2">
+                                <form action="{{ url_for('details') }}" method="POST">
+                                    <button type="submit" name="content_id" value="{{ content.id }}">
+                                        Details
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

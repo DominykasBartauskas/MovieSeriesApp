@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for content in data %}
+        {% if content.titleType == "movie" %}
+            <div class="flex-container">
+                <div class="more_details">
+                    <div class="poster">
+                        <img src="{{ content.image }}" alt="Movie Poster">
+                    </div>
+                    <div class="key_info">
+                        <h2>{{ content.title }}</h2>
+                        <h4><a href="https://www.imdb.com/title/{{ content.id }}/" target="_blank">
+                            IMDB
+                        </a>| {{ content.year }}</h4><br/>
+                        <h5>IMDB Rating: <span>{{ content.rating }} / 10.0</span><br/>
+                            IMDB Rank: <span>{{ content.rank }}</span>
+                        </h5>
+
+                        <p>
+                            Genres: <span>{{ content.genres }}</span><br/>
+                            Released:: <span>{{ content.release_date }}</span><br/>
+                            {% if content.plot == "N/A" %}
+                                Summary: <span>{{ content.plot_short }}</span>
+                            {% else %}
+                                Summary: <span>{{ content.plot }}</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="cast"></div>
+                    <div class="buttons">
+                        <form action="{{ url_for('delete_entry') }}" method="POST">
+                            <button class="delete_btn" type="submit" name="content_id" value="{{ content.id }}">
+                                Delete
+                            </button>
+
+                            <button class="watchlist_btn btn_add" type="submit"
+                                    data-content-id="{{ content.id }}">Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="flex-container">
+                <div class="more_details">
+                    <div class="poster">
+                        <img src="{{ content.image }}" alt="Movie Poster">
+                    </div>
+                    <div class="key_info">
+                        <h2>{{ content.title }}</h2>
+                        <h4><a href="https://www.imdb.com/title/{{ content.id }}/" target="_blank">
+                            IMDB
+                        </a>| {{ content.numberOfEpisodes }} episodes</h4><br/>
+                        <h5>IMDB Rating: <span>{{ content.rating }} / 10.0</span></h5>
+                        <p>
+                            Genres:
+                            <span>{{ content.genres }}</span><br/>
+                            Airtime: <span>{{ content.seriesStartYear }} - {{ content.seriesEndYear }}</span><br/>
+                            {% if content.plot == "N/A" %}
+                                Summary: <span>{{ content.plot_short }}</span>
+                            {% else %}
+                                Summary: <span>{{ content.plot }}</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="cast">
+                    </div>
+                    <div class="buttons">
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

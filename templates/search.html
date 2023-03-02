@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="flex-container">
+        {% for movie in mdata %}
+            <div class="card">
+                <div class="poster">
+                    <div class="titleType">
+                        <span class="material-symbols-outlined">movie</span>
+                    </div>
+                    <img src="{{ movie.image }}" alt="Movie Poster">
+                </div>
+                <div class="movie_details details">
+                    <h2>{{ movie.title }}</h2>
+                    <div class="released rmovie">
+                        Released: <span>{{ movie.year }}</span><br/>
+                        Runtime: <span>{{ movie.runningTimeInMinutes }}</span>
+                    </div>
+                    <div class="add_list">
+                        <div class="button1">
+                            <form action="{{ url_for('details') }}" method="POST">
+                                <button type="submit" name="content_id" value="{{ movie.id }}">Details</button>
+                            </form>
+                        </div>
+                        <div class="button2">
+                            <button class="watchlist_btn btn_add" type="submit"
+                                    data-content-id="{{ movie.id }}">Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% for series in sdata %}
+            <div class="card">
+                <div class="poster">
+                    <div class="titleType">
+                        <span class="material-symbols-outlined">Tv</span>
+                    </div>
+                    <img src="{{ series.image }}" alt="Movie Poster">
+                </div>
+                <div class="series_details details">
+                    <h2>{{ series.title }}</h2>
+                    <div class="released rseries">
+                        Started: <span>{{ series.seriesStartYear }}</span><br/>
+                        Finished: <span>{{ series.seriesEndYear }}</span><br/>
+                        Episodes: <span>{{ series.numberOfEpisodes }}</span>
+                    </div>
+                    <div class="add_list">
+                        <div class="button1">
+                            <form action="{{ url_for('details') }}" method="POST">
+                                <button type="submit" name="content_id" value="{{ series.id }}">Details</button>
+                            </form>
+                        </div>
+                        <div class="button2">
+                            <button class="watchlist_btn btn_add" type="submit"
+                                    data-content-id="{{ series.id }}">Add
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
