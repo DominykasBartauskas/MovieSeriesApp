@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 from fastapi import APIRouter, HTTPException
 
-from backend.schemas import TrendingResponse
+from backend.schemas.trending import TrendingResponse
 
 router = APIRouter()
 load_dotenv()
