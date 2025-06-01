@@ -1,0 +1,105 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# === Virtual Environments ===
+env/
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.Python
+
+# === Package management ===
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+*.whl
+
+# === PyInstaller ===
+*.manifest
+*.spec
+
+# === Test and Coverage ===
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+
+# === Type Checker ===
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+pyrightconfig.json
+
+# === Lint and Security ===
+bandit.yaml
+
+# === Jupyter ===
+.ipynb_checkpoints/
+
+# === dotenv ===
+.env
+.env.*
+!.env.example
+
+# === Logs ===
+*.log
+log/
+logs/
+
+# === SQLite/DB Files ===
+*.db
+*.sqlite3
+
+# === Alembic ===
+alembic.ini
+migrations/versions/
+
+# === Docker ===
+**/Dockerfile
+**/docker-compose.yml
+.dockerignore
+
+# === IDEs ===
+
+# VS Code
+.vscode/
+.history/
+
+# PyCharm (JetBrains)
+.idea/
+*.iml
+*.ipr
+*.iws
+# JetBrains project metadata
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# === System ===
+.DS_Store
+Thumbs.db
